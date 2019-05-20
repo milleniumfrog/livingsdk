@@ -1,0 +1,36 @@
+{
+  "name": "@livinglogic/livingsdk",
+  "version": "0.0.0",
+  "description": "",
+  "main": "dist/umd/livingsdk.js",
+  "scripts": {
+    "test": "npm run build &&  mocha -r source-map-support/register ./dist/cjs/*.test.js",
+    "build": "tsc && rollup -c"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/milleniumfrog/livingsdk.git"
+  },
+  "author": "René Schwarzinger",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/milleniumfrog/livingsdk/issues"
+  },
+  "homepage": "https://github.com/milleniumfrog/livingsdk#readme",
+  "dependencies": {
+    "@livinglogic/livingapi": "^0.10.0",
+    "axios": "^0.18.0"
+  },
+  "devDependencies": {
+    "@types/axios": "^0.14.0",
+    "@types/chai": "^4.1.7",
+    "@types/mocha": "^5.2.6",
+    "chai": "^4.2.0",
+    "esm": "^3.2.25",
+    "mocha": "^6.1.4",
+    "rollup": "^1.12.3",
+    "rollup-plugin-sourcemaps": "^0.4.2",
+    "source-map-support": "^0.5.12",
+    "typescript": "^3.4.5"
+  }
+}

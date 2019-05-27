@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "description": "",
   "main": "dist/umd/livingsdk.js",
+  "module": "dist/es2015/livingsdk.js",
   "scripts": {
     "test": "npm run build &&  mocha -r source-map-support/register ./dist/cjs/*.test.js",
     "build": "tsc && rollup -c"

@@ -1,5 +1,6 @@
-node_modules
+node_modules/
 local.env
 *.test.js
 *.test.js.map
 *.test.d.ts
+dist/

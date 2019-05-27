@@ -4,3 +4,4 @@ node_modules
 .gitlab-ci.yml
 rollup.config.js
 *.test.js
+tsconfig.json

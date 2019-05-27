@@ -7,9 +7,6 @@ export default [{
         format: 'cjs',
         name: 'livingsdk',
         sourcemap: true,
-        paths: {
-            './agent.def': './agent.cjs'
-        },
     },
     external: [
         'axios',
@@ -28,9 +25,6 @@ export default [{
         format: 'cjs',
         name: 'livingsdk',
         sourcemap: true,
-        paths: {
-            './agent.def': './agent.cjs'
-        },
     },
     external: [
         'axios',

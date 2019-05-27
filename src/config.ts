@@ -6,5 +6,4 @@ export const livingappsData = {
     "appId": process.env.TESTAPPID as string,
     "url": process.env.TESTSERVER as string,
 }
-console.log(process.env.TESTPWD)
-export const removeData = undefined;
+export const removeData = true;

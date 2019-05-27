@@ -2,6 +2,8 @@ import { LivingSDK, LivingSDKOptions, Auth_Token } from './livingsdk';
 import { expect } from 'chai';
 import {livingappsData as lsd, removeData } from './config'
 import { AxiosError } from 'axios';
+///@ts-ignore
+import * as livingApi from '@livinglogic/livingapi';
 
 let SERVER = lsd.url;
 
@@ -51,7 +53,6 @@ describe('LivingSDK: ', () => {
 		it('login with correct username and password', () => {
 			let lsdk = new LivingSDK({ url: SERVER}, lsd.username, lsd.password);
 			return lsdk.login().then((auth_token: Auth_Token | undefined) => {
-				console.log(auth_token);
 				expect(typeof auth_token).to.equal('string');
 			});
 		}).timeout( 10000 );
@@ -250,13 +251,13 @@ describe('LivingSDK: ', () => {
 					return LAAPI.get('datasources').get('storage').app;
 				})
 				.then((storage: any) => {
-					return storage.records.values();
+					const arr: Promise<any>[] = [];
+					storage.records.forEach((record: any) => {
+						arr.push(record.sdkupdate({id: '[JS] updated'}));
+					});
+					return Promise.all(arr);
 				})
-				.then((records: any) => {
-					for (let i of records) {
-						return i.sdkupdate({id: '[JS] updated'});
-					}
-				});
+
 		}).timeout(5000);
 
 		it('update in self', () => {
@@ -265,25 +266,25 @@ describe('LivingSDK: ', () => {
 				return LAAPI.get('datasources').get('self').app;
 			})
 			.then((storage: any) => {
-				return storage.records.values();
-			})
-			.then((records: any) => {
-				for (let i of records) {
-					return i.sdkupdate({
-						text: '[JS] this is a updated text',
-						number: 84,
-						phone: '+49 0000 0000000001',
-						url: 'https://dev.milleniumfrog.de',
-						mail: 'update@example.com',
-						date: new Date(),
-						textarea: '[JS] this is an even more updated text',
-						selection: 'option_2',
-						options: '_3',
-						multiple_options: ['_2'],
-						checkmark: true,
-						geodata: '0.1,1.0,'
+				const arr: Promise<any>[] = [];
+					storage.records.forEach((record: any) => {
+						arr.push(record.sdkupdate({
+							text: '[JS] this is a updated text',
+							number: 84,
+							phone: '+49 0000 0000000001',
+							url: 'https://dev.milleniumfrog.de',
+							mail: 'update@example.com',
+							date: new Date(),
+							textarea: '[JS] this is an even more updated text',
+							selection: 'option_2',
+							options: '_3',
+							multiple_options: ['_2'],
+							checkmark: true,
+							geodata: '0.1,1.0,'
+						}));
 					});
-				}
+					return Promise.all(arr);
+			})
 			});
 		}).timeout( 10000 )
 		// TODO: rethink if this test is necessary
@@ -313,8 +314,6 @@ describe('LivingSDK: ', () => {
 		// 	});
 		// }).timeout(5000);
 
-	});
-
 	if (removeData) {
 		describe('._delete()', () => {
 
@@ -324,13 +323,10 @@ describe('LivingSDK: ', () => {
 					return LAAPI.get('datasources').get('storage').app;
 				})
 				.then((storage: any) => {
-					return storage.records.values();
-				})
-				.then((records: any) => {
-					let arr: Array<Promise<any>> = []
-					for (let i of records) {
-						arr.push(i.delete());
-					}
+					let arr: Array<Promise<any>> = [];
+					storage.records.forEach((rec: any) => {
+						arr.push(rec.sdkdelete());
+					});
 					return Promise.all(arr);
 				});
 			}).timeout(10000);
@@ -341,17 +337,13 @@ describe('LivingSDK: ', () => {
 					return LAAPI.get('datasources').get('self').app;
 				})
 				.then((storage: any) => {
-					return storage.records.values();
-				})
-				.then((records: any) => {
-					let arr: Array<Promise<any>> = []
-					for (let i of records) {
-						arr.push(i.delete());
-					}
+					const arr: Promise<any>[] = [];
+					storage.records.forEach((rec: any) => {
+						arr.push(rec.sdkdelete());
+					})
 					return Promise.all(arr);
 				});
 			}).timeout(10000);
-
 		});
 	}
 });

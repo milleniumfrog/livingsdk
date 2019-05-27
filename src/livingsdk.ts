@@ -64,6 +64,10 @@ livingApi.Record.prototype.sdkupdate = function(values: any = {}) {
 	return this.app.globals.Login._update(this, values);
 }
 
+livingApi.Record.prototype.sdkdelete = function() {
+	return this.app.globals.Login._delete(this);
+}
+
 // inject insert and update
 
 export class LivingSDK {
@@ -220,7 +224,6 @@ export class LivingSDK {
 				headers: {
 					'X-La-Auth-Token': auth_token !== undefined ? auth_token : '',
 				}
-		
 			})
 		})
 	}

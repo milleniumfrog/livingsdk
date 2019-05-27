@@ -12,7 +12,7 @@ $ npm i @livinglogic/livingsdk
 ```
 ```typescript
 // import LivingSDK class
-import { LivingSDK } from '@livinglogic/livingsdk';
+import { LivingSDK } from '@livinglogic/livingsdk';
 // login your user (not always required)
 const lsdk = new LivingSDK({}, yourUsername, yourPassword);
 ```
@@ -96,9 +96,9 @@ lsdk.get(lsd.appId, lsdktemplates.admin)
 ```
 ### DONTS
 - do not use record.update and record.insert, use record.sdkupdate and record.insert instead.
-- do not login for each request, even when we do that in the tests. When you do that your requests need 1 second more per request. Create a global LivingSDK instance and use her until you need to reauthenticate.
+- do not login for each request, even when we do that in the tests. When you do that your requests need 1 second more per request. Create a global LivingSDK instance and use it until you need to reauthenticate.
 
-### known Limitations:
+### Known limitations:
 - can not upload file fields
 
 

@@ -1,5 +1,7 @@
 # LivingSDK
 
+# discontinued in favor for a graphql livingapi implementation
+
 A package for using LivingApps as Backend for your nodejs or browser javascript applications. It enables you to login users, download App data, create/update/delete records.
 
 Warning: The SDK is in alpha stage.

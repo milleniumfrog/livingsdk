@@ -23,7 +23,7 @@
   "homepage": "https://github.com/milleniumfrog/livingsdk#readme",
   "dependencies": {
     "@livinglogic/livingapi": "^0.10.0",
-    "axios": "^0.18.0"
+    "axios": "^0.21.1"
   },
   "devDependencies": {
     "@types/axios": "^0.14.0",

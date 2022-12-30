@@ -31,7 +31,7 @@
     "@types/mocha": "^5.2.6",
     "chai": "^4.2.0",
     "esm": "^3.2.25",
-    "mocha": "^6.1.4",
+    "mocha": "^10.2.0",
     "rollup": "^1.12.3",
     "rollup-plugin-sourcemaps": "^0.4.2",
     "source-map-support": "^0.5.12",
